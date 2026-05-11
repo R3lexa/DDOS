@@ -1,5 +1,19 @@
 [
     {
+        "method": "CFB",
+        "target": "https://www.nightdlc.org/",
+        "threads": "500",
+        "duration": "600",
+        "timestamp": "2026-05-11 23:25:02"
+    },
+    {
+        "method": "STRESS",
+        "target": "https://imkerei-falman.de/",
+        "threads": "2300",
+        "duration": "600",
+        "timestamp": "2026-05-11 23:03:35"
+    },
+    {
         "method": "POST",
         "target": "https://imkerei-sester.de/",
         "threads": "2300",
